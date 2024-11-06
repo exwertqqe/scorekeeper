@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'register_screen.dart';
-import 'forgot_pass_screen.dart';
+import '../register_screen/register_screen.dart';
+import '../forgot_password_screen/forgot_pass_screen.dart';
+import 'successful_login_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -22,51 +23,35 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40.0),
-            const TextField(
+            // Оновлене поле для введення електронної пошти
+            TextField(
               decoration: InputDecoration(
-                labelText: 'Enter your email',
-                labelStyle: TextStyle(color: Colors.grey),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.green),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.red),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.red),
+                hintText: 'Enter your email',
+                hintStyle: const TextStyle(color: Colors.grey),
+                filled: true,
+                fillColor: Colors.grey[100],
+                contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  borderSide: BorderSide.none,
                 ),
               ),
             ),
             const SizedBox(height: 16.0),
-            const TextField(
+            // Оновлене поле для введення паролю
+            TextField(
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Enter your password',
-                labelStyle: TextStyle(color: Colors.grey),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.grey),
+                hintText: 'Enter your password',
+                hintStyle: const TextStyle(color: Colors.grey),
+                filled: true,
+                fillColor: Colors.grey[100],
+                contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  borderSide: BorderSide.none,
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.green),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.red),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                  borderSide: BorderSide(color: Colors.red),
-                ),
-                suffixIcon: Icon(Icons.visibility_off),
+                suffixIcon: const Icon(Icons.visibility_off),
               ),
             ),
             const SizedBox(height: 10.0),
@@ -81,32 +66,36 @@ class SignInScreen extends StatelessWidget {
                 },
                 child: const Text(
                   'Forgot Password?',
-                  style: TextStyle(color: Colors.green),
+                  style: TextStyle(color: Colors.green, fontSize: 16),
                 ),
               ),
             ),
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                // todo Логіка для кнопки "Login"
+                // Navigate to the SuccessfulLoginScreen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SuccessfulLoginScreen()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
               child: const Text(
                 'Login',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
             const SizedBox(height: 16.0),
             const Center(
               child: Text(
                 'Or Login with',
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
             ),
             const SizedBox(height: 16.0),
@@ -118,7 +107,7 @@ class SignInScreen extends StatelessWidget {
                   icon: Image.asset('assets/google_ic.png'),
                   iconSize: 40.0,
                   onPressed: () {
-                    // todo Логіка для Google Login
+                    // Logic for Google Login
                   },
                 ),
               ),

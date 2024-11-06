@@ -22,3 +22,9 @@ flutter:
     - assets/scorekeeper_logo.png
     - assets/google_ic.png
     - assets/successful.png
+  fonts:
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist/Urbanist-Regular.ttf
+        - asset: assets/fonts/Urbanist/Urbanist-Bold.ttf
+          weight: 700

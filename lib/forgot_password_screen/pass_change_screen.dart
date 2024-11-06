@@ -25,7 +25,7 @@ class PasswordChangedScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('assets/successful.png', height: 150), // Висота зображення
+              Image.asset('assets/successful.png', height: 150),
               const SizedBox(height: 24),
               const Text(
                 'Password Changed!',
@@ -36,12 +36,12 @@ class PasswordChangedScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
+              const Text(
                 'Your password has been changed successfully.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.grey[600],
+                  color: Colors.grey,
                 ),
               ),
               const SizedBox(height: 32),
@@ -58,7 +58,13 @@ class PasswordChangedScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, '/sign_in_screen');
                   },
-                  child: const Text('Back to Login', style: TextStyle(color: Colors.white)),
+                  child: const Text(
+                    'Back to Login',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
               ),
             ],

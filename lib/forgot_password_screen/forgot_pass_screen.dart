@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'code_screen.dart'; // Імпортуємо екран для верифікації коду
+import 'code_screen.dart';
 
 class ForgotPassScreen extends StatelessWidget {
   const ForgotPassScreen({super.key});
@@ -65,13 +65,18 @@ class ForgotPassScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // Переходимо на CodeScreen при натисканні кнопки
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const CodeScreen()),
                   );
                 },
-                child: const Text('Send Code', style: TextStyle(color: Colors.white)),
+                child: const Text(
+                  'Send Code',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
               ),
             ),
             const Spacer(),

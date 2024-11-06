@@ -141,8 +141,14 @@ class _CodeScreenState extends State<CodeScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                onPressed: _verifyCode, // Call the verification method
-                child: const Text('Verify', style: TextStyle(color: Colors.white)),
+                onPressed: _verifyCode, // визиваємо метод перевірки
+                child: const Text(
+                  'Verify',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
               ),
             ),
             const Spacer(),
