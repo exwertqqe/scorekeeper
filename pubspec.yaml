@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.6.1   # Firebase Auth for authentication
+  cloud_firestore: ^4.11.0 # Firestore for storing user data (оцінки, наприклад)
 
 dev_dependencies:
   flutter_test:

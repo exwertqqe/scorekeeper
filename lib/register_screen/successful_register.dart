@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
-class PasswordChangedScreen extends StatelessWidget {
-  const PasswordChangedScreen({super.key});
+import 'package:scorekeeper/sing_in_screen/sing_in_screen.dart';
+class SuccessfulRegisterScreen extends StatelessWidget {
+  const SuccessfulRegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class PasswordChangedScreen extends StatelessWidget {
               Image.asset('assets/successful.png', height: 150),
               const SizedBox(height: 24),
               const Text(
-                'Password Changed!',
+                'Successful Registration!',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -37,7 +37,7 @@ class PasswordChangedScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Your password has been changed successfully.',
+                'You have successfully registered!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
@@ -45,6 +45,7 @@ class PasswordChangedScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
+
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -56,7 +57,11 @@ class PasswordChangedScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/sign_in_screen');
+                    // Перехід на екран авторизації
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignInScreen()),
+                    );
                   },
                   child: const Text(
                     'Back to Login',

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "814427881542",
+    "project_id": "scorekeeper-12391",
+    "storage_bucket": "scorekeeper-12391.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814427881542:android:064298fd17c56726b4ca47",
+        "android_client_info": {
+          "package_name": "com.example.scorekeeper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYDc2EpWFUfx9qdMwuAAfLQu6DmCsjP2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
