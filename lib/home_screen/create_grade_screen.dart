@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CreateGradeScreen extends StatefulWidget {
   const CreateGradeScreen({super.key});
@@ -8,9 +10,67 @@ class CreateGradeScreen extends StatefulWidget {
 }
 
 class _CreateGradeScreenState extends State<CreateGradeScreen> {
+  // Створюємо контролери для текстових полів
   final _subjectController = TextEditingController();
   final _dayMonthYearController = TextEditingController();
   final _gradeController = TextEditingController();
+  // ініціалізація Firebase Firestore та FirebaseAuth
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+
+  // Функція для створення або оновлення оцінки
+  Future<void> _createOrUpdateGrade() async {
+    final user = _auth.currentUser; // Отримуємо поточного користувача
+    // Якщо користувач не авторизований
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('User is not logged in')),
+      );
+      return;
+    }
+
+    // Отримуємо введені значення з полів
+    final userId = user.uid;
+    final subject = _subjectController.text;
+    final date = _dayMonthYearController.text;
+    final grade = _gradeController.text;
+
+    // Перевіряємо, чи заповнені всі поля
+    if (subject.isEmpty || date.isEmpty || grade.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill all fields!')),
+      );
+      return; // Якщо ні — вийти з функції
+    }
+
+    final gradesRef = _firestore.collection('grades').doc(userId);
+    final userGrades = await gradesRef.get();
+
+    // Якщо документ існує, додаємо нову оцінку
+    if (userGrades.exists) {
+      await gradesRef.update({
+        'grades': FieldValue.arrayUnion([{
+          'subject': subject,
+          'date': date,
+          'grade': grade,
+        }])
+      });
+    } else {
+      // Якшо документа немає, створюємо новий документ для користувача
+      await gradesRef.set({
+        'grades': [{
+          'subject': subject,
+          'date': date,
+          'grade': grade,
+        }]
+      });
+    }
+
+    // повідомлення про успішне збереження
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Grade saved successfully!')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,25 +164,9 @@ class _CreateGradeScreenState extends State<CreateGradeScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                onPressed: () {
-                  // Handle grade creation logic
-                  final subject = _subjectController.text;
-                  final date = _dayMonthYearController.text;
-                  final grade = _gradeController.text;
-
-                  if (subject.isNotEmpty && date.isNotEmpty && grade.isNotEmpty) {
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Grade created successfully!')),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Please fill all fields!')),
-                    );
-                  }
-                },
+                onPressed: _createOrUpdateGrade,
                 child: const Text(
-                  'Create',
+                  'Save Grade',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
@@ -131,26 +175,6 @@ class _CreateGradeScreenState extends State<CreateGradeScreen> {
             const SizedBox(height: 16),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Today'),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Your grade'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
-        ],
-        currentIndex: 0,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pushReplacementNamed(context, '/home');
-          } else if (index == 1) {
-            Navigator.pushReplacementNamed(context, '/grades');
-          } else if (index == 2) {
-            Navigator.pushReplacementNamed(context, '/account');
-          }
-        },
       ),
     );
   }

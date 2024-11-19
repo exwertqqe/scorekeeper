@@ -10,14 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  firebase_core: ^2.32.0
-  firebase_auth: ^4.6.1   # Firebase Auth for authentication
-  cloud_firestore: ^4.11.0 # Firestore for storing user data (оцінки, наприклад)
+  firebase_core: ^2.32.0 # ядро Firebase
+  firebase_auth: ^4.6.1   # Firebase Auth  для регистрації та входу
+  cloud_firestore: ^4.11.0 # Firestore for для збереження бази данних
+  firebase_database: ^10.0.0
+  shared_preferences: ^2.0.9 # бібліотека для збережння стану входу
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.9.2 # бібліотека для іконок
 
 flutter:
   uses-material-design: true
@@ -25,9 +28,16 @@ flutter:
     - assets/scorekeeper_logo.png
     - assets/google_ic.png
     - assets/successful.png
+    - assets/avatar.png
   fonts:
     - family: Urbanist
       fonts:
         - asset: assets/fonts/Urbanist/Urbanist-Regular.ttf
         - asset: assets/fonts/Urbanist/Urbanist-Bold.ttf
           weight: 700
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon.png" #
+  android_icon_size: 150 # розмір іконки для Android (здається не працює)
