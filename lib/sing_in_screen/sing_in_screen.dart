@@ -153,27 +153,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
-            const SizedBox(height: 16.0),
-            const Center(
-              child: Text(
-                'Or Login with',
-                style: TextStyle(color: Colors.grey, fontSize: 15),
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Center(
-              child: SizedBox(
-                width: 60.0,
-                height: 60.0,
-                child: IconButton(
-                  icon: Image.asset('assets/google_ic.png'),
-                  iconSize: 40.0,
-                  onPressed: () {
-                    // Логіка для входу через Google
-                  },
-                ),
-              ),
-            ),
             const SizedBox(height: 24.0),
             Center(
               child: GestureDetector(
@@ -197,7 +176,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 24.0),
           ],
         ),
       ),

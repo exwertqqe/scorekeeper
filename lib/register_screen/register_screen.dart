@@ -152,30 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: const TextStyle(color: Colors.red),
                 ),
               ],
-              const SizedBox(height: 16.0),
-              const Center(
-                child: Text(
-                  'Or register with',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Center(
-                child: SizedBox(
-                  width: 60.0,
-                  height: 60.0,
-                  child: IconButton(
-                    icon: Image.asset('assets/google_ic.png'),
-                    iconSize: 40.0,
-                    onPressed: () {
-                      // TODO: Add Google Register Logic
-                    },
-                  ),
-                ),
-              ),
+
               const SizedBox(height: 24.0),
               Center(
                 child: GestureDetector(
